@@ -1,5 +1,5 @@
 #!/bin/bash
-test -e ~/traceCodeDir && echo "~/test123 exist" && exit 0
+test -e ~/traceCodeDir && echo "~/traceCodeDir exist" && exit 0
 
 mkdir ~/test123
 #yourFocusDir=...(define by yourself)
