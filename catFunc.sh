@@ -1,11 +1,14 @@
 #!/bin/bash
-test -e ~/traceCodeDir && echo "~/traceCodeDir exist" && exit 0
+#rm -r ~/traceDir (if it was created by yourself before)
+test -e ~/traceDir && echo "~/traceDir exist" && exit 0
 
-mkdir ~/test123
-#yourFocusDir=...(define by yourself)
-cd $fucusCodeDir
-rsync -a --include '*/' --include '*.c' --exclude '*' . ~/traceCodeDir
-cd ~/traceCodeDir
+mkdir ~/traceDir
+#for safe (avoid that you are in /root/, and then ...)
+cd ~/traceDir
+#focusDir=...(define by yourself)
+cd $fucusDir
+rsync -a --include '*/' --include '*.c' --exclude '*' . ~/traceDir
+cd ~/traceDir
 function function_name ()
 {
     test ! -d $filename && cat "$filename" | grep "^[a-z|A-Z]\|{\|}\|#\|goto\|case\|if(\|if\ (\|else\|while(\|while\ (\|for(\|for\ (\|do(\|do\ (\|\ \ return[;\ ]\|^\ return[;\ ]\|\ \ break;\|^\ break;\|default:\|)$" | grep -v -E "^\s+\*" > "$filename".temp.c
