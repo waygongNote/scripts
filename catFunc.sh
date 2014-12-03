@@ -31,6 +31,6 @@ do
 done
 for filename in $(find $pwd | grep \.c$ | grep -v "net\.c\|telnet")
 do
-    rm -f $filename
+    rm -rf $filename
 done
 #fi
