@@ -25,12 +25,14 @@ function function_name ()
     test ! -d $filename && cat "$filename" | grep "^[a-z|A-Z]\|{\|}\|#\|goto\|case\|if(\|if\ (\|else\|while(\|while\ (\|for(\|for\ (\|do(\|do\ (\|[[:blank:]][[:blank:]]return[;\ ]\|^[[:blank:]]return[;\ ]\|\ \ break;\|^\ break;\|default:\|)$\|/\*\|\*/\|[[:blank:]][[:blank:]]\*\|^[[:blank:]]\*" > "$filename".temp.c
 }
 #for filename in $(ls -R| sed "s:^:`pwd`/:"|grep \.c$) => (it's not good enough, the below is better)
-for filename in $(find $pwd | grep \.c$) # | grep "net\.c\|telnet")
+for filename in $(find $pwd | grep \.c$)
 do
     function_name
 done
-#for filename in $(find $pwd | grep \.c$ | grep -v "net\.c\|telnet")
-#do
-#    rm -rf $filename
-#done
+for filename in $(find $pwd | grep \.c$ | grep -v \.temp\.c$)
+do
+    rm -f $filename
+done
 #fi
+#un-hide below if you already installed ctags (apt-get install ctags) for vim plugin (taglist)
+#ctags -R --exclude=.svn
