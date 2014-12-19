@@ -13,7 +13,7 @@ do
 	cd $filename
 	git st
 	git l |head -2
-	git add .
-	git ci -m "a ci"
+#	git add .
+#	git ci -m "a ci"
 	cd ..
 done
