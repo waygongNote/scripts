@@ -1,7 +1,6 @@
 # there's some problem when using du -sb (?) != du -s/1024
 size=$(du -s|awk '{print $1}')
 echo -n $size" ("
-#echo "scale=6;$(echo $(du -s|awk '{print $1}'))/1024" |bc
 if [ $size -ge $((1024*1024)) ]; then
 	printf $(echo "scale=3;$size/1024/1024" |bc)
 	echo -n G
