@@ -1,5 +1,11 @@
-
-if [ $# == 1 ] && [ $(echo $0 | tail -c 17) == "filename_date.sh" ]; then
-	echo $1
-	cp -a $1 $(echo $1 | cut -d '.' -f 1)_`echo $(date +%m%d)_$(date +%R | head -c 2)$(date +%R | tail -c 3)_$(date +%Y)`.log
+# ex. myDate = 1231_2359_2014
+myDate=$(echo $(date +%m%d_%H%M_%Y))
+if [ $# -ge 1 ] && [ $(echo $0 | tail -c 17) == "filename_date.sh" ]; then
+	cp -a $1 $(echo $1 | cut -d '.' -f 1)_$myDate.$(echo $1 | cut -d '.' -f 2)
+	echo $(echo $1 | cut -d '.' -f 1)_$myDate.$(echo $1 | cut -d '.' -f 2)
 fi
+
+
+
+
+# (cut can be replaced by awk): ex. test=$(echo "123.456.789"|awk 'BEGIN {FS="."};{print $1}') => test = 123
